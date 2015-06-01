@@ -1,0 +1,53 @@
+<div class="block_bg block_left">
+  <h1>
+    <span style="float:left;padding-right:10px;padding-bottom:10px;">
+      <img src="<%= @user.asset_logo.try(:avatar).try(:thumb).try(:url) || "/t/head/head1.jpg" %>"  alt="头像" style="width:100px;height:100px">
+    </span>
+    <span>
+      <%= link_to @user.name, @user %>
+      <b style="font-size:12px;color:grey;">消息:<%=  @user.microposts.count %></b>
+    </span>
+  </h1>
+  <h2 style="float:right;padding-top:35px;">
+    <%= render 'shared/stats' %>
+  </h2>
+  <div class="clear" style="border-bottom:1px solid black"></div>
+  <div style="text-align:center">
+    <%= @title %>
+  </div>
+  <div>
+    <% if @users.any? %>
+      <ul class="users">
+        <%= render @users %>
+      </ul>
+      <div class="clear"></div>
+      <%= will_paginate @users, renderer: BootstrapPagination::Rails%>
+    <% end %>
+  </div>
+</div>
+<div  class="block_bg block_right">
+      <div class="headline_title">
+      <div class="messages_root"></div>
+      <label>消息 (<%= @microposts.count %>)</label>
+      <div class="crumbs">
+        <a href="/main" title="返回首页">
+          <div class="icon_home"></div>
+        </a>
+        <ul>
+          <li>首页</li>
+          <li>/</li>
+          <li>消息</li>
+        </ul>
+      </div>
+    </div>
+    <% if @user.microposts.any? %>
+    <table class="table table-hover">
+      <%= render @microposts %>
+    </table>
+    <div><%= will_paginate @microposts, renderer: BootstrapPagination::Rails %></div>
+    <% else %>
+      没有内容
+    <% end %>
+</div>
+
+

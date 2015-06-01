@@ -1,0 +1,19 @@
+development: 
+  delivery_method: :smtp
+  smtp_settings: 
+    address: "smtp.exmail.qq.com"
+    port: 25
+    user_name: ""
+    password: "tengxun1234"
+    authentication: login
+    enable_starttls_auto: false
+production:
+  delivery_method: :smtp
+  smtp_settings: 
+    address: "smtp.exmail.qq.com"
+    port: 25
+    user_name: ""
+    password: "tengxun1234"
+    authentication: login
+    enable_starttls_auto: false
+

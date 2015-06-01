@@ -1,0 +1,19 @@
+/*
+ *= require pnotify/pnotify.custom.min
+*/
+// change colors
+//$linkColor: red;
+
+// change grid
+$gridColumnWidth: 70px;
+$gridGutterWidth: 10px;
+
+// import original bootstrap
+/*@import "twitter/bootstrap";
+@import "twitter/bootstrap-responsive";
+*/
+
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import 'jquery-ui';

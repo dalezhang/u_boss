@@ -1,0 +1,12 @@
+
+
+<div class="block_bg block_middle">
+    <h1>注　册</h1>
+      <%= simple_form_for(@user,wrapper: :vertical_form) do |f| %>
+      <%= render 'fields', f: f %>
+      <div class="button_div">
+        <%= f.submit "创建",class: "btn btn-large btn-primary" %>
+      </div>
+      
+      <% end %>
+</div>

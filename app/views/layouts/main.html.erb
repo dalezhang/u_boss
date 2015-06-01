@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CloudAudio</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'app_bootstrap','pnotify/pnotify.custom.min' %>
+  <%= stylesheet_link_tag 'custom' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'pnotify/pnotify.custom.min','pnotify/pnotify-rails' %>
+  <%= csrf_meta_tags %>
+  <meta content="audio/mpeg; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+<body>
+<%= render :partial => "/layouts/header" %>
+    <%= render :partial => "/flash/flash_html" %>
+<div class="f1 floor">
+    <div class="mod-inner">
+      <%= yield %>
+    </div>
+  </div>
+  <div class="f2 floor">
+<%= render :partial => "/layouts/footer" %>
+</body>
+</html>

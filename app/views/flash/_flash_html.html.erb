@@ -1,0 +1,15 @@
+<% if flash.any? %>
+
+  <script type="text/javascript">
+    $(function(){
+       var confirm = "<%= flash[:confirm] %>";
+      var notice = "<%= flash[:notice] %>";
+      var alert = "<%= flash[:alert] %>";
+      var success = "<%= flash[:success] %>";
+      var info = "<%= flash[:info] %>";
+      var error = "<%= flash[:error] %>";
+    flashNotice(notice,alert,success,info,error,confirm);
+    });
+  </script>
+
+<% end %>

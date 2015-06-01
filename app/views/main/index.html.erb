@@ -1,0 +1,25 @@
+
+<div  class="block_bg block_right">
+    <div class="headline_title">
+      <div class="messages_root"></div>
+      <label>消息 (<%= @microposts.count %>)</label>
+      <div class="crumbs">
+        <a href="/main" title="返回首页">
+          <div class="icon_home"></div>
+        </a>
+        <ul>
+          <li>首页</li>
+          <li>/</li>
+          <li>消息</li>
+        </ul>
+      </div>
+    </div>
+    <% if @microposts.any? %>
+    <table class="table table-hover">
+      <%= render @microposts %>
+    </table>
+    <div><%= will_paginate @microposts, renderer: BootstrapPagination::Rails %></div>
+    <% else %>
+      没有内容
+    <% end %>
+</div>

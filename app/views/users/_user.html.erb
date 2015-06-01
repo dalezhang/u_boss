@@ -1,0 +1,8 @@
+<div class="user">
+  <%= link_to user do %>
+  <img src="<%= user.asset_logo.try(:avatar).try(:thumb).try(:url) || "/t/head/head1.jpg" %>"  alt="头像" style="width:60px;height:60px;">
+	<%  end  %>
+    <%# if current_user.present? && current_user.tp == 0 && !current_user?(user) %>
+    <%# link_to 'x',user,method: :delete,confirm:"You sure?",:class=>'delete' %>
+  <%#  end  %>
+</div>

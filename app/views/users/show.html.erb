@@ -1,0 +1,71 @@
+<div class="block_bg block_left">
+    <h1>
+      <img src="<%= @user.asset_logo.try(:avatar).try(:thumb).try(:url) || "/t/head/head1.jpg" %>" style="width:100px;height:100px" alt="头像" >
+      <div><%= @user.try(:name) %></div>
+      <div><%= render 'follow_form' if signed_in? %></div>
+      <section>
+        <%= render 'shared/stats' %>
+      </section>
+    </h1>
+    <div>
+      <% if current_user.id == @user.id %>
+      <div>
+        邮箱：<%= @user.email %>
+      </div>
+      <% end %>
+      <div>
+        姓名：<%= @user.try(:name) %>
+      </div>
+      <div>
+        金币：<%= @user.try(:user_purse).try(:golds).try(:to_f) || 0 %>
+        <% if @user.id == current_user.id %>
+          <%= link_to("充值>>", url_for(:controller=>:user_purse,:action=>:recharge_page)) %>
+        <% end %>
+      </div>
+      <div>
+        歌曲数量：<%= @user.try(:audios).try(:count) || 0 %>
+      </div>
+      <div>
+        <% size2= Audio.where(:user_id=>@user.id,:status=>1).collect(&:audio_size).inject(:+) %>
+        空间使用量：<%= size2 ? (size2/1028576.to_f).round(3) : 0 %>MB
+      </div>
+      <% if @user.id == current_user.id %>
+      <div class="button_div">
+        <%= link_to("编辑", url_for(:controller=>:users,:action=>:edit,:id=>@user.id) , class: "btn btn-large btn-primary") %>
+      </div>
+      <% end %>
+    </div>
+</div>
+<div  class="block_bg block_right">
+    <div class="headline_title">
+      <div class="messages_root"></div>
+      <label>消息 (<%= @user.microposts.count %>)</label>
+      <div class="crumbs">
+        <a href="/main" title="返回首页">
+          <div class="icon_home"></div>
+        </a>
+        <ul>
+          <li>首页</li>
+          <li>/</li>
+          <li>消息</li>
+        </ul>
+      </div>
+    </div>
+    <ul class="work_action">
+      <% if @user.id == current_user.id %>
+      <li>
+        <a href="<%=url_for(:controller=>:microposts,:action=>:new)%>" title="添加">
+          <%= render partial: "/commons/add_action" %>
+        </a>
+      </li>
+      <% end %>
+    </ul>
+    <% if @user.microposts.any? %>
+    <table class="table table-hover">
+      <%= render @microposts %>
+    </table>
+    <div><%= will_paginate @microposts, renderer: BootstrapPagination::Rails %></div>
+    <% else %>
+      没有内容
+    <% end %>
+</div>

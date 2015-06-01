@@ -1,0 +1,32 @@
+<div class="topbar">
+  <h1 class="elogo">
+    <%= link_to root_path,id:"logo" do %>
+    <img src="/t/head/logo.png" style="height:50px;">
+    <% end %>
+  </h1>
+  <div class="nav">
+    <li class="menu-item">
+      <a href="/users"
+        <% if (@user.present? ? @user != current_user : false) || (controller_name == "users" && ["index"].include?(action_name)) %>
+        class="active"
+        <% end %>
+      >其他用户</a>
+    </li>
+    <% if signed_in? %>
+
+      <li class="menu-item">
+        <a href="/users/<%= current_user.id %>"
+          <% if @user.present? ? @user == current_user : false   %>
+          class="active"
+          <% end %>
+          >我</a>
+      </li>
+      <li class="menu-item">
+        <%= link_to "登出", signout_path , method: "delete" %>
+      </li>
+      <% else %>
+      <li class="menu-item"><%= link_to "登入", signin_path %></li>
+    <% end %>
+  </div>
+</div>
+<div class="opacity-bg"></div>
